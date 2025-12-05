@@ -24,8 +24,36 @@ class Calculator {
   }
 }
 
-function caesarCipher(str, shiftFactor) {}
+function caesarCipher(str, shiftFactor) {
+  if (shiftFactor > 25) {
+    return "shift factor cannot be greater than 25";
+  }
+  let result = "";
+  const alphabet = "abcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyz";
 
-function analyzeArray() {}
+  for (let i = 0; i < str.length; i++) {
+    if (alphabet.includes(str[i].toLowerCase())) {
+      const index = alphabet.indexOf(str[i].toLowerCase()) + shiftFactor;
+      if (str[i] === str[i].toUpperCase()) {
+        result += alphabet[index].toUpperCase();
+      } else {
+        result += alphabet[index];
+      }
+    } else {
+      result += str[i];
+    }
+  }
+
+  return result;
+}
+
+function analyzeArray(arr) {
+  return {
+    average: arr.reduce((sum, cur) => sum + cur, 0) / arr.length,
+    min: Math.min(...arr),
+    max: Math.max(...arr),
+    length: arr.length,
+  };
+}
 
 export { capitalize, reverseString, Calculator, caesarCipher, analyzeArray };
